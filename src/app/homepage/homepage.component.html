@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Свойства</th>
+    <th scope="col">Ресурсы</th>
+    <th scope="col">Остаток подарков</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let player of this.playerService.players; index as i">
+    <th scope="row"><a [routerLink]="['/player',player._id]">{{ player._id }}</a></th>
+    <td></td>
+    <td></td>
+    <td>{{player.outPresCnt}}</td>
+  </tr>
+  </tbody>
+</table>
