@@ -2,10 +2,20 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 
+export interface Property{
+  propName: string;
+  propValue: number;
+}
+
+export interface Resourse{
+  resName: string;
+  resValue: number;
+}
+
 export interface Player {
   _id: number;
-  props: [];
-  resourses: [];
+  props: Property[];
+  resourses: Resourse[];
   outPresCnt: number;
 }
 

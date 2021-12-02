@@ -10,8 +10,16 @@
   <tbody>
   <tr *ngFor="let player of this.playerService.players; index as i">
     <th scope="row"><a [routerLink]="['/player',player._id]">{{ player._id }}</a></th>
-    <td></td>
-    <td></td>
+    <td>
+      <p *ngFor="let prop of player.props">
+        <b>Свойство:</b> {{prop.propName}} - <b>Значение:</b> {{prop.propValue}}
+      </p>
+    </td>
+    <td>
+      <p *ngFor="let res of player.resourses">
+        <b>Ресурс:</b> {{res.resName}} - <b>Значение:</b> {{res.resValue}}
+      </p>
+    </td>
     <td>{{player.outPresCnt}}</td>
   </tr>
   </tbody>
