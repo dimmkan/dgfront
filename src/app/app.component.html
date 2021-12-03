@@ -1,1 +1,13 @@
+<nav class="navbar">
+  <h3>
+    Панель управления игроками
+  </h3>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a [routerLink]="['/']">Игроки</a>
+    </li>
+    <li routerLinkActive="active"><a [routerLink]="['/presents']">Подарки</a></li>
+  </ul>
+</nav>
+
 <router-outlet></router-outlet>

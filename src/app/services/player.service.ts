@@ -13,7 +13,7 @@ export interface Resourse{
 }
 
 export interface Player {
-  _id: number;
+  _id: string;
   props: Property[];
   resourses: Resourse[];
   outPresCnt: number;
@@ -24,8 +24,7 @@ export class PlayerService{
 
   players: Player[] = []
   constructor(
-    public http: HttpClient,
-    public router: Router
+    public http: HttpClient
   ) {
     this.reloadPlayers()
   }
@@ -37,5 +36,11 @@ export class PlayerService{
       })
   }
 
+  getById(id: string): Player|any {
+    return this.players.find(
+      // @ts-ignore
+      p => p._id == id
+    )
+  }
 
 }

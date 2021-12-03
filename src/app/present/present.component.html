@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">ID записи</th>
+    <th scope="col">Отправитель</th>
+    <th scope="col">Получатель</th>
+    <th scope="col">Ресурс</th>
+    <th scope="col">Количество</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let present of this.presentService.presents">
+    <th scope="row">{{ present._id }}</th>
+    <th scope="row"><a [routerLink]="['/player',present.sender]">{{ present.sender }}</a></th>
+    <th scope="row"><a [routerLink]="['/player',present.recipient]">{{ present.recipient }}</a></th>
+    <td>
+        <b>{{present.resourse}}</b>
+    </td>
+    <td>
+      <b>{{present.resVal}}</b>
+    </td>
+  </tr>
+  </tbody>
+</table>

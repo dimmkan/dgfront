@@ -1,1 +1,89 @@
-<p>player works!</p>
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
+  <div class="player-header mt-1">
+    <div class="row">
+      <div class="col-sm-10"><h4>Игрок: {{this.player._id}}</h4></div>
+      <div class="col-sm-1 offset-1">
+        <button type="button" class="btn btn-outline-dark" (click)="openModalPresent(content)">Подарить подарок
+          друзьям
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="player-properties">
+    <h4>Свойства игрока</h4>
+    <div *ngFor="let prop of player.props" class="row offset-1">
+      <h5><i>{{prop.propName}}: </i> {{prop.propValue}}</h5>
+    </div>
+  </div>
+  <div class="player-resourses">
+    <h4>Ресурсы игрока</h4>
+    <div *ngFor="let res of player.resourses" class="row offset-1">
+      <h5><i>{{res.resName}}: </i> {{res.resValue}}</h5>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Подарить подарки друзьям</h4>
+    <button type="button" class="close" aria-label="Закрыть" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <h6><b>Остаток подарков: </b><i>{{this.player.outPresCnt}}</i></h6>
+      <div *ngFor="let friend of this.friends" class="row justify-content-start offset-1">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [value]="friend._id" id="{{friend._id}}"
+                 (change)="onCheckboxChange($event)">
+          <label class="form-check-label" for="{{friend._id}}">
+            {{friend._id}}
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-info" (click)="givePresent(cancel, present)">Подарить подарок</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Закрыть</button>
+  </div>
+</ng-template>
+
+<ng-template #cancel let-modalCancel>
+  <div class="modal-header">
+    <h4 class="modal-title">Подарков больше нет</h4>
+    <button type="button" class="close" aria-label="Закрыть" (click)="modalCancel.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h6><b>Подарков больше нет!</b></h6>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modalCancel.close()">Закрыть</button>
+  </div>
+</ng-template>
+
+<ng-template #present let-modalPresent>
+  <div class="modal-header">
+    <h4 class="modal-title">Отправка подарка</h4>
+    <button type="button" class="close" aria-label="Закрыть" (click)="modalPresent.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group row m-1">
+      <select [(ngModel)]="this.selectedResouse" class="m-1">
+        <option value="money" selected>Монеты</option>
+        <option value="crystals">Кристалы</option>
+      </select>
+      <label for="valueResourse" class="m-1">Количество</label>
+      <input type="number" id="valueResourse" [(ngModel)]="this.valueResourse" class="m-1">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="sendPresent(); modalPresent.close()">Отправить</button>
+  </div>
+</ng-template>

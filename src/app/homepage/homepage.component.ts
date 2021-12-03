@@ -14,6 +14,7 @@ export class HomepageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.playerService.reloadPlayers()
   }
 
 }
